@@ -418,7 +418,11 @@
           <else>
             <group prefix=" (" suffix=")">
               <text term="no date" form="short"/>
-              <text variable="year-suffix" prefix="-"/>
+              <choose>
+                <if variable="year-suffix" match="any">
+                  <text variable="year-suffix" prefix="-"/>
+                </if>
+              </choose>
             </group>
           </else>
         </choose>
