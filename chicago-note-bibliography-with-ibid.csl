@@ -39,14 +39,8 @@
       <term name="editor" form="verb-short">ed.</term>
       <term name="translator" form="verb-short">trans.</term>
       <term name="translator" form="short">trans.</term>
-      <term name="editortranslator" form="verb-short">
-        <single>ed. and trans.</single>
-        <multiple>ed. and trans.</multiple>
-      </term>
-      <term name="editortranslator" form="verb">
-        <single>Edited and translated by</single>
-        <multiple>Edited and translated by</multiple>
-      </term>
+      <term name="editortranslator" form="verb-short">ed. and trans.</term>
+      <term name="editortranslator" form="verb">Edited and translated by</term>
       <term name="translator" form="short">trans.</term>
     </terms>
   </locale>
@@ -396,7 +390,7 @@
         </if>
         <else-if type="post-weblog">
           <text variable="container-title" text-case="title" font-style="italic" suffix=" (blog)"/>
-        </else-if>      
+        </else-if>
         <else-if type="bill legislation legal_case" match="none">
           <text variable="container-title" text-case="title" font-style="italic"/>
         </else-if>
@@ -1095,7 +1089,7 @@
                 <group delimiter=", " prefix="(" suffix=")">
                   <text variable="genre"/>
                   <text macro="issued"/>
-                </group>           
+                </group>
               </if>
               <else>
                 <text macro="issued"/>

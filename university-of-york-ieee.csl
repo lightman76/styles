@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-GB">
   <!-- This style was edited with the Visual CSL Editor (http://editor.citationstyles.org/visualEditor/) -->
   <info>
@@ -45,7 +45,7 @@
           <date-part name="year" form="long"/>
         </date>
       </if>
-      <else-if type=" bill book chapter graphic legal_case legislation motion_picture paper-conference song thesis" match="any">
+      <else-if type="bill book chapter graphic legal_case legislation motion_picture paper-conference song thesis" match="any">
         <date variable="issued">
           <date-part name="year" form="long"/>
         </date>
@@ -112,7 +112,7 @@
   </macro>
   <macro name="publisher">
     <choose>
-      <if type=" bill book chapter graphic legal_case legislation motion_picture paper-conference song" match="any">
+      <if type="bill book chapter graphic legal_case legislation motion_picture paper-conference song" match="any">
         <group delimiter=": ">
           <text variable="publisher-place"/>
           <text variable="publisher"/>
@@ -172,7 +172,7 @@
                 <text term="accessed" text-case="capitalize-first"/>
                 <date form="text" variable="accessed">
                   <date-part name="day" form="numeric-leading-zeros"/>
-                  <date-part name="month" form="short" strip-periods="false" />
+                  <date-part name="month" form="short" strip-periods="false"/>
                   <date-part name="year" form="long"/>
                 </date>
               </group>
