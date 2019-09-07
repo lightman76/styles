@@ -35,6 +35,7 @@
       <term name="month-11" form="short">Nov.</term>
       <term name="month-12" form="short">Dec.</term>
       <term name="translator" form="short">trans.</term>
+      <term name="proceedings-of">Proceedings of the</term>
     </terms>
   </locale>
   <macro name="author">
@@ -70,6 +71,9 @@
       <if variable="container-title" match="any">
         <text variable="title" quotes="true" text-case="title"/>
       </if>
+      <else-if type="paper-conference" variable="event" match="any">
+        <text variable="title" quotes="true" text-case="title"/>
+      </else-if>
       <else>
         <text variable="title" font-style="italic" text-case="title"/>
       </else>
@@ -85,13 +89,35 @@
       </else>
     </choose>
   </macro>
+  <macro name="conference-descriptor">
+    <group delimiter=", ">
+      <text variable="event"/>
+      <text variable="event-place"/>
+      <date variable="event-date" form="text"/>
+    </group>
+    <choose>
+      <if variable="section" match="any">
+        <text variable="section" prefix=": "/>
+      </if>
+    </choose>
+  </macro>
   <macro name="container-title">
-    <text variable="container-title" font-style="italic" text-case="title"/>
+    <group delimiter=": ">
+      <text variable="container-title" font-style="italic" text-case="title"/>
+      <choose>
+        <if variable="event" match="any">
+          <group delimiter=" ">
+            <text term="proceedings-of" font-style="italic"/>
+            <text macro="conference-descriptor" font-style="italic"/>
+          </group>
+        </if>
+      </choose>
+    </group>
   </macro>
   <macro name="other-contributors">
     <group delimiter=", ">
       <choose>
-        <if variable="container-title" match="any">
+        <if variable="container-title event" match="any">
           <names variable="illustrator interviewer director editor translator" delimiter=", ">
             <label form="verb" suffix=" "/>
             <name and="text"/>
@@ -196,7 +222,7 @@
   <macro name="container2-title">
     <group delimiter=", ">
       <choose>
-        <if type="speech paper-conference" match="any">
+        <if type="speech">
           <group delimiter=", ">
             <text variable="event"/>
             <date variable="event-date" form="text"/>
