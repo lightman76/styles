@@ -926,6 +926,22 @@
           </choose>
         </group>
       </else-if>
+      <else-if variable="event-date" type="paper-conference" match="any">
+        <group>
+          <date variable="event-date">
+            <date-part name="year"/>
+          </date>
+          <text variable="year-suffix"/>
+          <choose>
+            <if variable="container-title" match="none">
+              <date variable="event-date">
+                <date-part prefix=", " name="month"/>
+                <date-part prefix=" " name="day"/>
+              </date>
+            </if>
+          </choose>
+        </group>
+      </else-if>
       <else-if variable="status">
         <group>
           <text variable="status" text-case="lowercase"/>
