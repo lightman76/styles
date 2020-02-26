@@ -35,6 +35,7 @@
       <term name="month-11" form="short">Nov.</term>
       <term name="month-12" form="short">Dec.</term>
       <term name="translator" form="short">trans.</term>
+      <term name="proceedings-of">Proceedings of the</term>
     </terms>
   </locale>
   <macro name="author">
@@ -70,6 +71,9 @@
       <if variable="container-title" match="any">
         <text variable="title" quotes="true" text-case="title"/>
       </if>
+      <else-if type="paper-conference" variable="event" match="any">
+        <text variable="title" quotes="true" text-case="title"/>
+      </else-if>
       <else>
         <text variable="title" font-style="italic" text-case="title"/>
       </else>
@@ -85,20 +89,42 @@
       </else>
     </choose>
   </macro>
+  <macro name="conference-descriptor">
+    <group delimiter=", ">
+      <text variable="event"/>
+      <text variable="event-place"/>
+      <date variable="event-date" form="text"/>
+    </group>
+    <choose>
+      <if variable="section" match="any">
+        <text variable="section" prefix=": "/>
+      </if>
+    </choose>
+  </macro>
   <macro name="container-title">
-    <text variable="container-title" font-style="italic" text-case="title"/>
+    <group delimiter=": ">
+      <text variable="container-title" font-style="italic" text-case="title"/>
+      <choose>
+        <if variable="event" match="any">
+          <group delimiter=" ">
+            <text term="proceedings-of" font-style="italic"/>
+            <text macro="conference-descriptor" font-style="italic"/>
+          </group>
+        </if>
+      </choose>
+    </group>
   </macro>
   <macro name="other-contributors">
     <group delimiter=", ">
       <choose>
         <if variable="container-title" match="any">
-          <names variable="container-author editor illustrator interviewer translator" delimiter=", ">
+          <names variable="container-author editor illustrator interviewer director translator" delimiter=", ">
             <label form="verb" suffix=" "/>
             <name and="text"/>
           </names>
         </if>
         <else>
-          <names variable="container-author editor illustrator interviewer translator" delimiter=", ">
+          <names variable="container-author editor illustrator interviewer director translator" delimiter=", ">
             <label form="verb" suffix=" " text-case="capitalize-first"/>
             <name and="text"/>
           </names>
@@ -141,7 +167,7 @@
             <text macro="volume-lowercase"/>
           </if>
           <!--other contributors preceding the volume-->
-          <else-if variable="author" match="all">
+          <else-if variable="author editor" match="all">
             <choose>
               <if variable="editor translator container-author illustrator interviewer director" match="any">
                 <text macro="volume-lowercase"/>
@@ -254,6 +280,12 @@
           <date variable="accessed" form="text"/>
         </group>
       </if>
+      <else-if variable="URL DOI" match="any">
+        <group delimiter=" ">
+          <text term="accessed" text-case="capitalize-first"/>
+          <date variable="accessed" form="text"/>
+        </group>
+      </else-if>
     </choose>
   </macro>
   <citation et-al-min="3" et-al-use-first="1" disambiguate-add-names="true" disambiguate-add-givenname="true">
